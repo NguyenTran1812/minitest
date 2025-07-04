@@ -1,0 +1,34 @@
+<launch>
+  <!-- Load the robot URDF -->
+  <param name="robot_description" command="cat $(find hahaa)/urdf/hahaa.urdf" />
+
+  <!-- Robot State Publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
+    <param name="publish_frequency" value="50.0" />
+  </node>
+
+  <!-- Start the joint state publisher -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+  <!-- Start RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find hahaa)/rviz/urdf.rviz" />
+
+  <!-- Launch Map Server to load your map -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find hahaa)/maps/map.yaml" />
+
+  <!-- AMCL for localization -->
+  <node name="amcl" pkg="amcl" type="amcl" output="screen">
+    <param name="use_map_topic" value="true"/>
+  </node>
+
+  <!-- Diff Drive Controller for wheel control -->
+  <node name="diff_drive_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+        args="diff_drive_controller" />
+
+  <!-- Move Base for navigation -->
+  <include file="$(find hahaa)/launch/move_base.launch"/>
+
+  <!-- Teleop for manual control (optional) -->
+  <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="teleop_keyboard" output="screen" />
+  
+

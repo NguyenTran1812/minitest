@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     10
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="hahaa">
+  <link
+    name="basefoot_link">
+    <inertial>
+      <origin
+        xyz="0.00130995866681949 -0.0117757503843343 0.297246416245947"
+        rpy="0 0 0" />
+      <mass
+        value="10" />
+      <inertia
+        ixx="0.672843543194726"
+        ixy="-0.000997233810236771"
+        ixz="0.0326110289980858"
+        iyy="0.803082016177958"
+        iyz="-0.000232742885759396"
+        izz="0.964357790467748" />
+    </inertial>
+    <!-- fix  The root link Basefoot_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF-->
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hahaa/meshes/Basefoot_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.772549019607843 0.752941176470588 0.733333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hahaa/meshes/Basefoot_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.00130995866681988 -0.0117757503843349 0.295515304218433"
+        rpy="0 0 0" />
+      <mass
+        value="10" />
+      <inertia
+        ixx="0.672843543194726"
+        ixy="-0.000997233810236771"
+        ixz="0.0326110289980858"
+        iyy="0.803082016177958"
+        iyz="-0.000232742885759397"
+        izz="0.964357790467748" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hahaa/meshes/Base_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.772549019607843 0.752941176470588 0.733333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hahaa/meshes/Base_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_link_jt"
+    type="fixed">
+    <origin
+      xyz="0 0 0.00173111202751303"
+      rpy="0 0 0" />
+    <parent
+      link="basefoot_link" />
+    <child
+      link="base_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Wheel_Right">
+    <inertial>
+      <origin
+        xyz="0.0021173 -0.015229 -0.046066"
+        rpy="0 0 0" />
+      <mass
+        value="10" />
+      <inertia
+        ixx="0.0095725"
+        ixy="-7.4694E-05"
+        ixz="2.1263E-08"
+        iyy="0.035459"
+        iyz="1.0316E-08"
+        izz="0.030823" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hahaa/meshes/Wheel_Right.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.77255 0.75294 0.73333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hahaa/meshes/Wheel_Right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Wheel_Right_jt"
+    type="fixed">
+    <origin
+      xyz="-3.3962E-05 -0.40176 -0.00021392"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Wheel_Right" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Wheel_Left">
+    <inertial>
+      <origin
+        xyz="0.0029168 -0.016171 0.038193"
+        rpy="0 0 0" />
+      <mass
+        value="10" />
+      <inertia
+        ixx="0.0095764"
+        ixy="4.1837E-05"
+        ixz="-4.9106E-08"
+        iyy="0.035464"
+        iyz="-2.1372E-09"
+        izz="0.030824" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hahaa/meshes/Wheel_Left.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.77255 0.75294 0.73333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hahaa/meshes/Wheel_Left.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Wheel_Left_jt"
+    type="fixed">
+    <origin
+      xyz="3.3367E-05 0.39472 0.00021017"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Wheel_Left" />
+    <axis
+      xyz="8.4532E-05 0.00053246 -1" />
+  </joint>
+  <link
+    name="lidar_link">
+    <inertial>
+      <origin
+        xyz="-0.00054685 3.3485E-05 -0.023355"
+        rpy="0 0 0" />
+      <mass
+        value="0.10046" />
+      <inertia
+        ixx="3.4201E-05"
+        ixy="-2.6046E-10"
+        ixz="-9.7289E-09"
+        iyy="3.4194E-05"
+        iyz="4.2543E-10"
+        izz="4.2115E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hahaa/meshes/Lidar.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://hahaa/meshes/Lidar.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <!-- <joint
+    name="Lidar_JT"
+    type="fixed">
+    <origin
+      xyz="0.454074374535918 -0.00380851278129762 0.0430688879724875"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint> -->
+<joint name="Lidar_JT" type="fixed">
+  <parent link="base_link"/>
+  <child link="lidar_link"/>
+  <origin xyz="0.454 0.0 0.043" rpy="0 0 0"/>
+</joint>
+
+<!-- Thêm Link Dummy -->
+<link name="dummy_link">
+  <inertial>
+    <mass value="0.0"/>
+    <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+  </inertial>
+</link>
+
+<!-- Thêm Joint Cố Định giữa Basefoot_link và dummy_link -->
+<joint name="dummy_joint" type="fixed">
+  <parent link="basefoot_link"/>
+  <child link="dummy_link"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+</joint>
+
+<!-- <link name="odom">
+  <inertial>
+    <mass value="0.0"/>
+    <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+  </inertial>
+</link>
+
+<joint name="odom_base_link" type="fixed">
+  <parent link="odom"/>
+  <child link="base_link"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+</joint> -->
+
+
+<gazebo>
+  <plugin name="base_link_planar_move" filename="libgazebo_ros_planar_move.so">
+    <body_name>base_link</body_name>
+    <robot_namespace>/</robot_namespace>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <robotBaseFrame>base_link</robotBaseFrame>
+    <cmdVelTopic>cmd_vel</cmdVelTopic>
+    <xyzTolerance>0.01</xyzTolerance>
+    <rpyTolerance>0.01</rpyTolerance>
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryRate>20.0</odometryRate>
+    <cmdTimeout>0.25</cmdTimeout>
+  </plugin>
+</gazebo>
+
+<gazebo reference="lidar_link">
+  <sensor type="ray" name="lidar_sensor">
+    <pose>0 0 0 0 0 0</pose> 
+    <visualize>true</visualize>
+    <update_rate>10.0</update_rate>
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>360</samples>
+          <resolution>1</resolution>
+          <min_angle>-1.57079632679</min_angle>
+          <max_angle>1.57079632679</max_angle>
+        </horizontal>
+      </scan>
+      <range>
+        <min>0.1</min>
+        <max>30.0</max>
+      </range>
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.01</stddev>
+      </noise>
+    </ray>
+
+    <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so">
+        <topicName>/scan</topicName>
+        <frameName>lidar_link</frameName>
+    </plugin>
+  </sensor>
+
+</gazebo>
+
+</robot>
+
+    <!-- <plugin name="gazebo_ros_laser" filename="libgazebo_ros_laser.so"> -->
+      <!-- <topicName>/scan</topicName> Xuất dữ liệu ra topic /scan -->
+      <!-- <frameName>lidar_link</frameName> Tên frame tương ứng với Lidar -->
+      <!-- <rosDebug>true</rosDebug> Thêm dòng này để kích hoạt logging -->
+
+    <!-- </plugin> -->

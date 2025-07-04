@@ -1,0 +1,21 @@
+<launch>
+    <!-- Load robot description using xacro -->
+  <param
+    name="robot_description"
+    textfile="$(find hahaa)/urdf/hahaa.urdf" />
+
+    <!-- Joint State Publisher GUI -->
+    <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+
+    <!-- Robot State Publisher -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <!-- RViz for visualizing the robot -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find hahaa)/rviz/hahaa.rviz" />
+
+    <!-- TurtleBot3 Teleoperation -->
+    <node name="turtlebot3_teleop" pkg="turtlebot3_teleop" type="turtlebot3_teleop_key" output="screen">
+        <param name="use_sim_time" value="false"/>
+    </node>
+</launch>
+

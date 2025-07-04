@@ -1,0 +1,72 @@
+<launch>
+  <arg name="navigation" default="false" />
+
+  <arg name="use_sim_time" value="true"/>
+
+  <arg name="map_file" default="$(find hahaa)/maps/map.yaml"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/turtlebot3_world.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <param name="robot_description" command="$(find xacro)/xacro $(find hahaa)/urdf/smooth.urdf" />
+
+  <!-- <node name="gazebo" pkg="gazebo_ros" type="gazebo" args="-s libgazebo_ros_factory.so" output="screen" /> -->
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find hahaa)/urdf/smooth.urdf'" />
+  </node>
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model hahaa_robot -x 0 -y -1.80 -z 0 -R 0 -P 0 -Y 0" />
+
+
+  <!-- <node name="controller_manager" pkg="controller_manager" type="controller_manager" output="screen"/> -->
+
+  <!-- <node name="controller_spawner" pkg="controller_manager" type="spawner" args="diff_drive_controller" /> -->
+
+   <!-- Khởi chạy Hector SLAM -->
+  <!-- <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen">
+    <param name="use_sim_time" value="true"/>
+    <remap from="scan" to="/scan"/>
+  </node> -->
+
+  <!-- Nếu navigation là true, khởi chạy Navigation -->
+  <group if="$(arg navigation)">
+    <!-- Map server -->
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+    
+    <!-- AMCL -->
+    <include file="$(find hahaa)/launch/amcl.launch"/>
+
+    <!-- Move base -->
+    <!-- <node pkg="move_base" type="move_base" name="move_base" output="screen">
+      <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+      <param name="global_costmap/robot_base_frame" value="base_link"/>
+      <param name="use_sim_time" value="true"/>
+    </node> -->
+
+    <!-- move_base -->
+    <include file="$(find hahaa)/launch/move_base.launch">
+      <arg name="cmd_vel_topic" value="/cmd_vel"/>
+      <arg name="odom_topic" value="odom"/>
+    </include>
+      
+  </group>
+
+  <!-- Nếu navigation là false, khởi chạy Hector SLAM -->
+  <group if="$(eval not arg('navigation'))">
+    <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen">
+      <param name="use_sim_time" value="true"/>
+      <remap from="scan" to="/scan"/>
+    </node>
+
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find hahaa)/rviz/navigation.rviz"/>
+  </group>
+  
+</launch>
