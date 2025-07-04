@@ -23,4 +23,6 @@ roslaunch hahaa gazebo.launch navigation:=true
 slam:
 roslaunch hahaa gazebo.launch
 
+Nếu sử dụng model navigate hahaa thì cần mở Rviz và add thủ công các topic.
+
  
